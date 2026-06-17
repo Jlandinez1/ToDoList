@@ -1,5 +1,13 @@
+/**GLOBALES**/
+
 * {
   box-sizing: border-box;
+}
+
+:root{
+    --night: #101966;
+    --Fprincipal: "Bitcount Grid Double";
+    --Fsecundaria: "Cause"
 }
 
 body {
@@ -9,18 +17,32 @@ body {
     margin: 0px;
 }
 
-header {
-    padding: 29px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    text-align: center;
-    background-image: url(../img/Header_Night.png);
-    font-size: 30px;
-    color: #000000;
+h1{
+    font-family: var(--Fprincipal);
+    font-weight: 500;
+    font-size: 35px;
 }
 
-h1{
-    font-family: "Bitcount Grid Double";
-    font-weight: 500;
-    font-size: 40px;
+.header {
+    width: 100%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    text-align: center;
+    background-image: url(../img/Header_Night.png);
+    color: #000000;
+    margin-bottom: 10px;
 }
+
+h2{
+    font-size: 35px;
+    font-family: var(--Fsecundaria);
+}
+
+.btn_add_night{
+    background-color: var(--night);
+    text-decoration: none;
+    color: #fff;
+}
+
+.day-btn { border: 1px solid #ccc; border-radius: 6px; padding: 6px 10px; cursor: pointer; background: white; }
+.day-btn.active { background: #d1fae5; border-color: #10b981; color: #065f46; }

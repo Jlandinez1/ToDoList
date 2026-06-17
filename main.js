@@ -1,3 +1,4 @@
+//Conexión con electron.js
 const { app, BrowserWindow } = require('electron')
 
 const createWindow = () => {
