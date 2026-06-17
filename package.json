@@ -1,0 +1,23 @@
+{
+  "name": "todolist",
+  "version": "1.0.0",
+  "description": "Lista de cosas por hacer",
+  "keywords": [
+    "HTML"
+  ],
+  "homepage": "https://github.com/Jlandinez1/ToDoList#readme",
+  "bugs": {
+    "url": "https://github.com/Jlandinez1/ToDoList/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jlandinez1/ToDoList.git"
+  },
+  "license": "ISC",
+  "author": "Juan Landinez",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
