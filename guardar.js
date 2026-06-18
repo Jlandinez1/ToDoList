@@ -1,6 +1,5 @@
 const selectedDays = new Set();
 
-// Lógica de los botones de días
 document.querySelectorAll('.day-btn').forEach(btn => {
     btn.addEventListener('click', () => {
         const day = parseInt(btn.dataset.day);
@@ -14,30 +13,25 @@ document.querySelectorAll('.day-btn').forEach(btn => {
     });
 });
 
-// Submit del formulario
 document.getElementById('AddTask').addEventListener('submit', async (e) => {
-    e.preventDefault();  // evita que recargue la página
+    e.preventDefault();
+    //console.log('1. Submit ejecutado');
 
-    const body = {
+    // Verifica que electronAPI existe
+    //console.log('2. electronAPI:', window.electronAPI);
+
+    const datos = {
         task: document.getElementById('task').value,
         repeatDays: [...selectedDays].sort()
     };
+    //console.log('3. Datos a enviar:', datos);
 
-    try {
-        const res = await fetch('/tasks', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(body)
-        });
+    const resultado = await window.electronAPI.guardarTarea(datos);
+    //console.log('4. Resultado:', resultado);
 
-        if (res.ok) {
-            window.location.href = 'index.html';  // redirige al guardar
-        } else {
-            const error = await res.json();
-            console.error('Error:', error);
-        }
-
-    } catch (error) {
-        console.error('Error de red:', error);
+    if (resultado.ok) {
+        window.location.href = 'index.html';
+    } else {
+        console.error('Error:', resultado.error);
     }
 });
