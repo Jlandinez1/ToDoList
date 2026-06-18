@@ -1,46 +1,46 @@
 const diasNombres = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
 
 async function cargarTareas() {
-
-    console.log('1. Cargando tareas...');
-    console.log('2. electronAPI:', window.electronAPI);
-
     const resultado = await window.electronAPI.obtenerTareas();
-    console.log('3. Resultado:', resultado);
 
     if (!resultado.ok) {
         console.error('Error al cargar tareas:', resultado.error);
         return;
     }
 
+    const hoy = new Date().getDay(); // 0=Dom, 1=Lun ... 6=Sáb
+    console.log('Día de hoy:', diasNombres[hoy]);
+
     const contenedor = document.getElementById('lista-tareas');
-    console.log('4. Contenedor:', contenedor);
     contenedor.innerHTML = '';
 
-    if (resultado.tareas.length === 0) {
-        contenedor.innerHTML = '<p>No hay tareas todavía.</p>';
+    // Filtra: muestra la tarea si no tiene días (tarea normal)
+    // o si el día de hoy está en sus repeatDays
+    const tareasFiltradas = resultado.tareas.filter(tarea => {
+        if (tarea.repeatDays.length === 0) return true; // sin repetición, siempre se muestra
+        return tarea.repeatDays.includes(hoy);          // solo si toca hoy
+    });
+
+    if (tareasFiltradas.length === 0) {
+        contenedor.innerHTML = '<p>No hay tareas para hoy.</p>';
         return;
     }
 
-    resultado.tareas.forEach(tarea => {
+    tareasFiltradas.forEach(tarea => {
         const item = document.createElement('div');
         item.classList.add('tarea-item');
-
-        // Días en los que se repite
-        const diasHtml = tarea.repeatDays.length > 0
-            ? `<span class="repeat-days">${tarea.repeatDays.map(d => diasNombres[d]).join(', ')}</span>`
-            : '';
 
         item.innerHTML = `
             <label class="tarea-label">
                 <input type="checkbox" class="tarea-check">
                 <span class="tarea-nombre">${tarea.task}</span>
             </label>
-            ${diasHtml}
         `;
 
         contenedor.appendChild(item);
     });
 }
+
+document.addEventListener('DOMContentLoaded', cargarTareas);
 
 cargarTareas();

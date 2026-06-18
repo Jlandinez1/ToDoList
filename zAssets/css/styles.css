@@ -6,8 +6,10 @@
 
 :root{
     --night: #101966;
+    --nightClaro: #3f4689 ;
     --Fprincipal: "Bitcount Grid Double";
-    --Fsecundaria: "Cause"
+    --Fsecundaria: "Cause";
+    --ColTitulo: #fbea2f;
 }
 
 body {
@@ -29,7 +31,7 @@ h1{
     padding-bottom: 2%;
     text-align: center;
     background-image: url(../img/Header_Night.png);
-    color: #000000;
+    color: var(--ColTitulo);
     margin-bottom: 10px;
 }
 
@@ -38,11 +40,35 @@ h2{
     font-family: var(--Fsecundaria);
 }
 
+label{
+    font-family: var(--Fsecundaria);
+}
+
+.day-btn { 
+    border: 1px solid #ccc; 
+    border-radius: 6px; 
+    padding: 6px 10px; 
+    cursor: pointer; 
+    background: white; 
+}
+
+.day-btn:hover{
+    background-color: var(--nightClaro);
+    color: #fff;
+}
+
+.day-btn.active{
+    background-color: #101966;
+    color: #fff;
+}
+
 .btn_add_night{
     background-color: var(--night);
     text-decoration: none;
     color: #fff;
 }
 
-.day-btn { border: 1px solid #ccc; border-radius: 6px; padding: 6px 10px; cursor: pointer; background: white; }
-.day-btn.active { background: #d1fae5; border-color: #10b981; color: #065f46; }
+.tarea-label input:checked ~ .tarea-nombre{
+    text-decoration: line-through;
+    color: #242323;
+}
