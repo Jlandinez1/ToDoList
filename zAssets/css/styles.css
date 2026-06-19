@@ -68,7 +68,7 @@ label{
     color: #fff;
 }
 
-.tarea-label input:checked ~ .tarea-nombre{
+.tarea-nombre.completada {
     text-decoration: line-through;
-    color: #242323;
+    opacity: 0.5;
 }

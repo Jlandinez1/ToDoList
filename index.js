@@ -33,14 +33,53 @@ async function cargarTareas() {
         item.innerHTML = `
             <label class="tarea-label">
                 <input type="checkbox" class="tarea-check">
-                <span class="tarea-nombre">${tarea.task}</span>
+                <span class="tarea-nombre ${tarea.completada ? 'completada' : ''}">${tarea.task}</span>
             </label>
         `;
+
+        // Escucha el cambio del checkbox
+        const checkbox = item.querySelector('.tarea-check');
+        checkbox.checked = tarea.completada;
+        checkbox.addEventListener('change', async () => {
+            console.log('1. Checkbox cambiado:', checkbox.checked);
+            console.log('2. ID de la tarea:', tarea._id);
+            const resultado = await window.electronAPI.actualizarTarea({
+                id: tarea._id,
+                completada: checkbox.checked
+            });
+        if (resultado.ok) {
+                // Tacha o quita el tachado visualmente
+                item.querySelector('.tarea-nombre').classList.toggle('completada', checkbox.checked);
+            } else {
+                console.error('Error al actualizar:', resultado.error);
+                checkbox.checked = !checkbox.checked; // revierte si hubo error
+            }
+        });
 
         contenedor.appendChild(item);
     });
 }
 
-document.addEventListener('DOMContentLoaded', cargarTareas);
+document.addEventListener('DOMContentLoaded', () => {
+    // Escucha cuando Mongo esté listo
+    window.electronAPI.onMongoListo(() => {
+        cargarTareas();
+    });
 
-cargarTareas();
+    // Por si Mongo ya estaba conectado antes de que cargara la página
+    window.electronAPI.onNuevoDia(() => {
+    console.log('Nuevo día — recargando tareas...');
+    
+    const audio = new Audio('zAssets/mp3/GoodMorning.mp3');
+    audio.play();
+    
+    cargarTareas();
+});
+
+    cargarTareas();
+});
+
+
+// Hacer que la app sea draggable
+// Crear boton de cerrar app y minimizar
+// Crear fondo para el body de la app
