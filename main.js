@@ -1,6 +1,8 @@
 //Conexión electron y mongoose
 const { app, BrowserWindow, ipcMain } = require('electron');
 const mongoose = require('mongoose');
+require('dotenv').config();
+
 
 //Schema de mongoose para la BD
 const taskSchema = new mongoose.Schema({
@@ -42,7 +44,7 @@ ipcMain.handle('guardar-tarea', async (event, datos) => {
 async function verificarReset() {
     const ahora = new Date();
     const hoy = new Date();
-    hoy.setHours(0, 0, 0, 0); // medianoche de hoy
+    hoy.setHours(0, 1, 0, 0); // medianoche de hoy
 
     // Busca alguna tarea que no haya sido reseteada hoy
     const tareaDesactualizada = await Task.findOne({
@@ -96,7 +98,7 @@ function iniciarTimerMedianoche() {
   }, msHastaMedianoche);
 }
 // Conexion de MongoDB con MongoOSE
-mongoose.connect('mongodb://juan:123@ac-6bgr4cv-shard-00-00.8w7hjpx.mongodb.net:27017,ac-6bgr4cv-shard-00-01.8w7hjpx.mongodb.net:27017,ac-6bgr4cv-shard-00-02.8w7hjpx.mongodb.net:27017/?ssl=true&replicaSet=atlas-zqn0tk-shard-0&authSource=admin&appName=Juan', {
+mongoose.connect(process.env.MONGODB_URI, {
   dbName: 'ToDoList', 
   serverSelectionTimeoutMS: 30000,  // espera hasta 30 segundos
   socketTimeoutMS: 45000,
