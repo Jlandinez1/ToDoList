@@ -31,10 +31,12 @@ async function cargarTareas() {
         item.classList.add('tarea-item');
 
         item.innerHTML = `
-            <label class="tarea-label">
-                <input type="checkbox" class="tarea-check">
-                <span class="tarea-nombre ${tarea.completada ? 'completada' : ''}">${tarea.task}</span>
-            </label>
+            <div class="taskDiv">
+                <label class="tarea-label">
+                    <input type="checkbox" class="tarea-check">
+                    <span class="tarea-nombre ${tarea.completada ? 'completada' : ''}">${tarea.task}</span>
+                </label>
+            </div>
         `;
 
         // Escucha el cambio del checkbox

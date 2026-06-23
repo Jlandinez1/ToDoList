@@ -17,6 +17,9 @@ body {
     color: #000;
     justify-items: center;
     margin: 0px;
+    background-image: url(../img/Body_Night.png);
+    background-repeat: no-repeat;
+    background-size:cover;
 }
 
 h1{
@@ -30,9 +33,9 @@ h1{
     padding-top: 2%;
     padding-bottom: 2%;
     text-align: center;
-    background-image: url(../img/Header_Night.png);
+    /*background-image: url(../img/Header_Night.png);*/
     color: var(--ColTitulo);
-    margin-bottom: 10px;
+    margin-bottom: 35px;
 }
 
 h2{
@@ -42,6 +45,16 @@ h2{
 
 label{
     font-family: var(--Fsecundaria);
+}
+
+.close{
+    padding: 0%;
+    margin: 0%;
+    margin-left: 90%;
+    background-color: var(--night);
+    border: none;
+    text-decoration: none;
+    display: inline-block;
 }
 
 .day-btn { 
@@ -71,4 +84,8 @@ label{
 .tarea-nombre.completada {
     text-decoration: line-through;
     opacity: 0.5;
+}
+
+.taskDiv{
+    height: 25px;
 }
