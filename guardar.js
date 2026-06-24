@@ -22,7 +22,8 @@ document.getElementById('AddTask').addEventListener('submit', async (e) => {
 
     const datos = {
         task: document.getElementById('task').value,
-        repeatDays: [...selectedDays].sort()
+        repeatDays: [...selectedDays].sort(),
+        categoria: document.getElementById('categoria').value
     };
     //console.log('3. Datos a enviar:', datos);
 

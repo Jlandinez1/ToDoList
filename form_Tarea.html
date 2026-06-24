@@ -26,32 +26,35 @@
             <label for="task">Tarea:</label>
             <input type="text" id="task" name="task" required>
         </div>
-
         <br>
-
         <div class="form-group">
             <label>Repetir los días</label>
-
             <br><br>
-
             <div id="days-container">
-                <button type="button" class="day-btn" data-day="0">Dom</button>
                 <button type="button" class="day-btn" data-day="1">Lun</button>
                 <button type="button" class="day-btn" data-day="2">Mar</button>
                 <button type="button" class="day-btn" data-day="3">Mié</button>
                 <button type="button" class="day-btn" data-day="4">Jue</button>
                 <button type="button" class="day-btn" data-day="5">Vie</button>
                 <button type="button" class="day-btn" data-day="6">Sáb</button>
+                <button type="button" class="day-btn" data-day="0">Dom</button>
             </div>
-            
-            <br>
-
-            </div>
-
-            <div class="btns_form">
-                <button class="btn_add_night" type="submit">Agregar Tarea</button>
-                <a href="index.html"><button class="btn_add_night" type="button">Cancelar</button></a>
-            </div>
+        </div>
+        <div class="form-cat">
+            <label for="Seleccione la categoria">
+                <select name="Categoria" id="categoria">
+                    <option value="Casa">Casa</option>
+                    <option value="Universidad">Universidad</option>
+                    <option value="Negocio">Negocio</option>
+                    <option value="Otro">Otro</option>
+                </select>
+            </label>
+        </div>
+        <br>
+        <div class="btns_form">
+            <button class="btn_add_night" type="submit">Agregar Tarea</button>
+            <a href="index.html"><button class="btn_add_night" type="button">Cancelar</button></a>
+        </div>
     </form>
 
     <script src="guardar.js"></script>

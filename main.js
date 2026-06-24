@@ -9,7 +9,8 @@ const taskSchema = new mongoose.Schema({
     task: { type: String, required: true },
     repeatDays: { type: [Number], default: [] },
     completada: { type: Boolean, default: false },
-    ultimoReset: { type: Date, default: null }
+    ultimoReset: { type: Date, default: null },
+    categoria: { type: String, enum:["Casa","Universidad","Negocio"], default: "Otro"}
 });
 //Creacion del modelo
 const Task = mongoose.model('Task', taskSchema);
