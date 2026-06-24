@@ -83,6 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
     cargarTareas();
 });
 
+
 // Hacer que la app sea draggable
 // Crear boton de cerrar app y minimizar
 // Crear fondo para el body de la app

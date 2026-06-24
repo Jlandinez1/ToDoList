@@ -10,7 +10,7 @@ const taskSchema = new mongoose.Schema({
     repeatDays: { type: [Number], default: [] },
     completada: { type: Boolean, default: false },
     ultimoReset: { type: Date, default: null },
-    categoria: { type: String, enum:["Casa","Universidad","Negocio"], default: "Otro"}
+    categoria: { type: String, enum:["casa","universidad","negocio", "otro"], default: "otro"}
 });
 //Creacion del modelo
 const Task = mongoose.model('Task', taskSchema);
@@ -31,7 +31,8 @@ ipcMain.handle('guardar-tarea', async (event, datos) => {
     try {
         const newTask = new Task({
             task: datos.task,
-            repeatDays: datos.repeatDays
+            repeatDays: datos.repeatDays,
+            categoria: datos.categoria
         });
         await newTask.save();
         //console.log('6. Guardado exitoso'); LOGS POR ERRORES :P
@@ -71,7 +72,7 @@ async function verificarReset() {
 function iniciarTimerMedianoche() {
   const ahora = new Date();
   const medianoche = new Date();
-  medianoche.setHours(8, 30, 0, 0);
+  medianoche.setHours(0, 0, 0, 0);
 
   const msHastaMedianoche = medianoche - ahora;
 
