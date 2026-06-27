@@ -35,10 +35,12 @@ function renderizarTareas() {
         item.classList.add('tarea-item');
 
         item.innerHTML = `
-            <label class="tarea-label">
+        <label class="tarea-label">
+            <div class="taskDiv">
                 <input type="checkbox" class="tarea-check">
                 <span class="tarea-nombre ${tarea.completada ? 'completada' : ''}">${tarea.task}</span>
-            </label>
+            </div>
+        </label>
         `;
 
         const checkbox = item.querySelector('.tarea-check');
@@ -83,7 +85,9 @@ document.addEventListener('DOMContentLoaded', () => {
     cargarTareas();
 });
 
+document.querySelector('.close').addEventListener('click', () => {
+    window.electronAPI.cerrarApp();
+});
 
 // Hacer que la app sea draggable
-// Crear boton de cerrar app y minimizar
-// Crear fondo para el body de la app
+// Crear boton de minimizar app

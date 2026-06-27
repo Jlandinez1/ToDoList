@@ -7,5 +7,6 @@ contextBridge.exposeInMainWorld('electronAPI', {
     actualizarTarea: (datos) => ipcRenderer.invoke('actualizar-tarea', datos),
     onMongoListo: (callback) => ipcRenderer.on('mongo-listo', callback),
     resetearTareas: () => ipcRenderer.invoke('resetear-tareas'),
-    onNuevoDia: (callback) => ipcRenderer.on('nuevo-dia', callback)
+    onNuevoDia: (callback) => ipcRenderer.on('nuevo-dia', callback),
+    cerrarApp: () => ipcRenderer.invoke('cerrar-app')
 });

@@ -46,12 +46,11 @@ ipcMain.handle('guardar-tarea', async (event, datos) => {
 async function verificarReset() {
     const ahora = new Date();
     const hoy = new Date();
-    hoy.setHours(0, 1, 0, 0); // medianoche de hoy
+    hoy.setHours(0, 0, 0, 0); // medianoche de hoy
 
     // Busca alguna tarea que no haya sido reseteada hoy
     const tareaDesactualizada = await Task.findOne({
         $or: [
-            { ultimoReset: null },
             { ultimoReset: { $lt: hoy } }  // último reset fue antes de hoy
         ]
     });
@@ -146,6 +145,9 @@ ipcMain.handle('resetear-tareas', async () => {
     }
 });
 
+ipcMain.handle('cerrar-app', () => {
+    app.quit();
+});
 
 //Creacion de la ventana con electron.js
 const createWindow = () => {
@@ -167,4 +169,3 @@ const createWindow = () => {
 app.whenReady().then(() => {
   createWindow()
 })
-

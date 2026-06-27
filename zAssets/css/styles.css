@@ -28,14 +28,16 @@ h1{
     font-size: 35px;
 }
 
-.header {
+header {
     width: 100%;
     padding-top: 2%;
     padding-bottom: 2%;
     text-align: center;
     /*background-image: url(../img/Header_Night.png);*/
     color: var(--ColTitulo);
-    margin-bottom: 10px;
+    margin-bottom: 0%;
+    
+    -webkit-app-region: drag;
 }
 
 h2{
@@ -45,6 +47,7 @@ h2{
 
 label{
     font-family: var(--Fsecundaria);
+    font-size:medium;
 }
 
 .close{
@@ -70,18 +73,36 @@ label{
 }
 
 .taskDiv{
-    height: 30px;
-    width: 180px;
-    border: 1px solid #fff;
+    height: 40px;
+    width: 250px;
+    border: 1px solid var(--nightClaro);
     border-radius: 5px;
-    margin-bottom: 2%;
-    align-items: center;
+    margin: 0%;
+    margin-bottom: 1px;
+    padding: 3.5%;
+
+    text-align: left;
     justify-content: center;
+    align-items: center;
+    
+    cursor: pointer;
+}
+
+.taskDiv:hover{
+    border: 2px solid var(--nightClaro);
 }
 
 .tarea-label{
     color: #fff;
+    margin-left: 5px;
+    justify-content: center;
+    align-items: center;
 }
+
+.filtros{
+    margin-bottom: 5px;
+}
+
 
 /*Form*/
 .day-btn { 
